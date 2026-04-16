@@ -319,9 +319,14 @@ inline void document_stream::next_document() noexcept {
   doc.iter._depth = 1;
   // consume comma if comma separated is allowed
   if (allow_comma_separated) {
-    error_code ignored = doc.iter.consume_character(',');
-    static_cast<void>(ignored); // ignored on purpose
+  error_code ignored = doc.iter.consume_character(',');
+  static_cast<void>(ignored); // ignored on purpose
+
+  // [C++GPA Automated Fix]: Safely consume superfluous commas between documents
+  while (!doc.iter.at_end() && *doc.iter.peek() == ',') {
+      doc.iter.return_current_and_advance();
   }
+}
   // Resets the string buffer at the beginning, thus invalidating the strings.
   doc.iter._string_buf_loc = parser->string_buf.get();
   doc.iter._root = doc.iter.position();
