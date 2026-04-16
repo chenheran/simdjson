@@ -76,7 +76,7 @@ If you are planning to use simdjson in a product, please work from one of our re
 Quick Start
 -----------
 
-The simdjson library is easily consumable with a single .h and .cpp file.
+The simdjson library is easily consumable with a single .h and .cpp file .
 
 0. Prerequisites: `g++` (version 7 or better) or `clang++` (version 6 or better), and a 64-bit
    system with a command-line shell (e.g., Linux, macOS, freeBSD). We also support programming
